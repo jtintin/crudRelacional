@@ -1,0 +1,17 @@
+-- 1. Borrar el usuario si existe
+DROP USER IF EXISTS 'appuser'@'localhost';
+
+-- 2. Crear nuevamente el usuario con la clave sugerida
+CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'appUser2026';
+
+-- 3. Darle permisos sobre la base de datos crudrelacional
+GRANT SELECT, INSERT, UPDATE, DELETE ON crudrelacional.* TO 'appuser'@'localhost';
+
+-- 4. Aplicar los cambios
+FLUSH PRIVILEGES;
+
+-- 5. Verificar usuario appuser
+SELECT User, Host FROM mysql.user WHERE User='appuser';
+
+-- 6. Verificar permisos usuario appuser
+show grants for 'appuser'@'localhost'
